@@ -1,6 +1,7 @@
 package com.andrewfinberg;
 
 import org.apache.commons.math3.complex.Complex;
+
 import java.util.HashMap;
 
 public class Quadratic implements Comparable<Quadratic> {
@@ -31,6 +32,12 @@ public class Quadratic implements Comparable<Quadratic> {
         this.discriminant = (Math.pow(this.b, 2)) - (4 * this.a * this.c);
     }
 
+    /**
+     * Method sorts by the quadratic coefficient 'a'
+     *
+     * @param o Accepts second object for comparison
+     * @return Result of the comparison
+     */
     @Override
     public int compareTo(Quadratic o) {
         int result = 1;
@@ -44,39 +51,6 @@ public class Quadratic implements Comparable<Quadratic> {
                     result = 0;
                 }
         return result;
-    }
-
-    public double getA() {
-        return a;
-    }
-
-    public void setA(double a) {
-        this.a = a;
-    }
-
-    public double getB() {
-        return b;
-    }
-
-    public void setB(double b) {
-        this.b = b;
-    }
-
-    public double getC() {
-        return c;
-    }
-
-    public void setC(double c) {
-        this.c = c;
-    }
-
-    @Override
-    public String toString() {
-        return "Quadratic{" +
-                "a = " + a +
-                ", b = " + b +
-                ", c = " + c +
-                '}';
     }
 
     /**
@@ -169,6 +143,39 @@ public class Quadratic implements Comparable<Quadratic> {
     public double derivative(double x) {
         double derivative = (2 * this.a * x) + this.b;
         return derivative;
+    }
+
+    public double getA() {
+        return a;
+    }
+
+    public void setA(double a) {
+        this.a = a;
+    }
+
+    public double getB() {
+        return b;
+    }
+
+    public void setB(double b) {
+        this.b = b;
+    }
+
+    public double getC() {
+        return c;
+    }
+
+    public void setC(double c) {
+        this.c = c;
+    }
+
+    @Override
+    public String toString() {
+        return "Quadratic{" +
+                "a = " + a +
+                ", b = " + b +
+                ", c = " + c +
+                '}';
     }
 
 }
