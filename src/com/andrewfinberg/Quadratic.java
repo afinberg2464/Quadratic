@@ -1,10 +1,9 @@
 package com.andrewfinberg;
 
 import org.apache.commons.math3.complex.Complex;
-
 import java.util.HashMap;
 
-public class Quadratic {
+public class Quadratic implements Comparable<Quadratic> {
 
     private double a;
     private double b;
@@ -12,14 +11,14 @@ public class Quadratic {
     private double discriminant;
 
     /**
-     * This is the default constructor of the Quadratic class
+     * Default constructor of the Quadratic class
      */
     public Quadratic() {
         this(1, 0, 0);
     }
 
     /**
-     * This constructor allows the user to set the values of a, b, and c
+     * Constructor allows user to set the values of a, b, and c
      *
      * @param a Double value for the quadratic coefficient
      * @param b Double value for the linear coefficient
@@ -30,6 +29,21 @@ public class Quadratic {
         this.b = b;
         this.c = c;
         this.discriminant = (Math.pow(this.b, 2)) - (4 * this.a * this.c);
+    }
+
+    @Override
+    public int compareTo(Quadratic o) {
+        int result = 1;
+        if (getA() <= o.getA())
+            if (getA() < o.getA()) {
+                result = -1;
+            } else if (!(getA() > o.getA()))
+                if (getA() < o.getA()) {
+                    result = -1;
+                } else {
+                    result = 0;
+                }
+        return result;
     }
 
     public double getA() {
@@ -59,9 +73,9 @@ public class Quadratic {
     @Override
     public String toString() {
         return "Quadratic{" +
-                "a=" + a +
-                ", b=" + b +
-                ", c=" + c +
+                "a = " + a +
+                ", b = " + b +
+                ", c = " + c +
                 '}';
     }
 
@@ -148,6 +162,7 @@ public class Quadratic {
     /**
      * This method accepts a value for 'x' and returns the derivative
      * of the quadratic equation
+     *
      * @param x The value of 'x' provided by the user
      * @return Returns the derivative as a double
      */
@@ -155,5 +170,6 @@ public class Quadratic {
         double derivative = (2 * this.a * x) + this.b;
         return derivative;
     }
+
 }
 
