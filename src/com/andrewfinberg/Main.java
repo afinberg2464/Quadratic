@@ -1,7 +1,10 @@
 package com.andrewfinberg;
 
+import org.apache.commons.math3.complex.Complex;
+
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class Main {
 
@@ -11,6 +14,10 @@ public class Main {
         boolean negativeDiscriminant;
         double derivative;
         int isLarger;
+        double root1;
+        double root2;
+        List<Double> realRoots = new ArrayList<>();
+        List<Complex> complexRoots = new ArrayList<>();
 
         Quadratic quadratic1, quadratic2, quadratic3;
 
@@ -18,19 +25,22 @@ public class Main {
         hasRealRoots = quadratic1.hasRealRoots();
         negativeDiscriminant = quadratic1.negativeDiscriminant();
         derivative = quadratic1.derivative(1);
-        quadratic1.roots();
+        realRoots = quadratic1.calculateRealRoots();
+        complexRoots = quadratic1.calculateComplexRoots();
 
         quadratic2 = new Quadratic(1, 3, 6);
         hasRealRoots = quadratic2.hasRealRoots();
         negativeDiscriminant = quadratic2.negativeDiscriminant();
         derivative = quadratic2.derivative(4);
-        quadratic2.roots();
+        realRoots = quadratic2.calculateRealRoots();
+        complexRoots = quadratic2.calculateComplexRoots();
 
         quadratic3 = new Quadratic(0.45, 6.8, 2.23);
         hasRealRoots = quadratic1.hasRealRoots();
         negativeDiscriminant = quadratic1.negativeDiscriminant();
         derivative = quadratic1.derivative(1);
-        quadratic1.roots();
+        realRoots = quadratic3.calculateRealRoots();
+        complexRoots = quadratic3.calculateComplexRoots();
 
         isLarger = quadratic1.compareTo(quadratic3);
         isLarger = quadratic3.compareTo(quadratic2);

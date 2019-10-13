@@ -2,7 +2,8 @@ package com.andrewfinberg;
 
 import org.apache.commons.math3.complex.Complex;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Quadratic implements Comparable<Quadratic> {
 
@@ -10,6 +11,8 @@ public class Quadratic implements Comparable<Quadratic> {
     private double b;
     private double c;
     private double discriminant;
+    private List<Double> realRoots = new ArrayList<>();
+    private List<Complex> complexRoots = new ArrayList<>();
 
     /**
      * Default constructor of the Quadratic class
@@ -30,6 +33,10 @@ public class Quadratic implements Comparable<Quadratic> {
         this.b = b;
         this.c = c;
         this.discriminant = (Math.pow(this.b, 2)) - (4 * this.a * this.c);
+
+        if (this.a == 0) {
+            throw new IllegalArgumentException("The value of 'a' cannot be 0");
+        }
     }
 
     /**
@@ -85,48 +92,35 @@ public class Quadratic implements Comparable<Quadratic> {
      *
      * @return Returns a HashMap of the roots
      */
-    public HashMap roots() {
-        double root1;
-        double root2;
+    public List<Double> calculateRealRoots() {
 
+        if (hasRealRoots() == true) {
+            double root1 = (-this.b + Math.sqrt(this.discriminant)) / (2 * this.a);
+            double root2 = (-this.b - Math.sqrt(this.discriminant)) / (2 * this.a);
 
-        // If the discriminant is greater than zero
-        // Return the two real roots
-        if (this.discriminant > 0) {
-            HashMap<Integer, Double> roots = new HashMap<>();
+            realRoots.add(root1);
+            realRoots.add(root2);
 
-            root1 = (-this.b + Math.sqrt(this.discriminant)) / (2 * this.a);
-            root2 = (-this.b - Math.sqrt(this.discriminant)) / (2 * this.a);
+            return realRoots;
+        }
+        return null;
+    }
 
-            roots.put(0, root1);
-            roots.put(1, root2);
+    public List<Complex> calculateComplexRoots() {
 
-            return roots();
-
-        // If the discriminant is less than zero
-        //Return the two complex roots
-        } else if (this.discriminant < 0) {
-            HashMap<Integer, Complex> roots = new HashMap<>();
-
+        if (hasRealRoots() == false) {
             double realPart = -this.b / (2 * this.a);
             double imaginaryPart = Math.sqrt(Math.abs(this.discriminant)) / (2 * this.a);
 
             Complex complex1 = new Complex(realPart, imaginaryPart);
             Complex complex2 = new Complex(realPart, -imaginaryPart);
 
-            roots.put(0, complex1);
-            roots.put(1, complex2);
+            complexRoots.add(complex1);
+            complexRoots.add(complex2);
 
-            return roots;
-
-
-        // If the discriminant is zero
-        // Return zero as the only real root
-        } else {
-            HashMap<Integer, Integer> roots = new HashMap<>();
-            roots.put(0, 0);
-            return roots;
+            return complexRoots;
         }
+        return null;
     }
 
     /**
