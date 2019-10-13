@@ -89,10 +89,9 @@ public class Quadratic implements Comparable<Quadratic> {
         double root1;
         double root2;
 
-        /**
-         * If the discriminant is greater than zero
-         * Return the two real roots
-         */
+
+        // If the discriminant is greater than zero
+        // Return the two real roots
         if (this.discriminant > 0) {
             HashMap<Integer, Double> roots = new HashMap<>();
 
@@ -104,10 +103,8 @@ public class Quadratic implements Comparable<Quadratic> {
 
             return roots();
 
-            /**
-             * If the discriminant is less than zero
-             * Return the two complex roots
-             */
+        // If the discriminant is less than zero
+        //Return the two complex roots
         } else if (this.discriminant < 0) {
             HashMap<Integer, Complex> roots = new HashMap<>();
 
@@ -122,10 +119,9 @@ public class Quadratic implements Comparable<Quadratic> {
 
             return roots;
 
-            /**
-             * If the discriminant is zero
-             * Return zero as the only real root
-             */
+
+        // If the discriminant is zero
+        // Return zero as the only real root
         } else {
             HashMap<Integer, Integer> roots = new HashMap<>();
             roots.put(0, 0);
